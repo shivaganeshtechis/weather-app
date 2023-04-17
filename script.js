@@ -1,8 +1,8 @@
-function convert(){
-  var c= document.getElementById('data').value;
-  var  f= (c * 1.8) + 32;
-  alert(f + "F");
-}
+function convert(data){
+  var c = data;
+  var  f = (c * 1.8) + 32;
+  return f;
+};
 
 const timeEl = document.getElementById('time');
 const dateEl = document.getElementById('date');
@@ -67,7 +67,7 @@ let weather = {
         );
       }
     },
-  
+
     // ! Function 3
     //Display current info. calling function to display all these info
     displayWeather: function (data) {
@@ -93,6 +93,10 @@ let weather = {
         "West",
         "North West"
       ];
+
+      // to convert  celcius to farenheit
+      const celciusTemp = main.temp;
+      const farenheitTemp = (celciusTemp*95) + 32;
   
       const searchBar = document.querySelector(".searchInput");
       searchBar.style.border = "1px solid rgba(255, 255, 255, 0.1)";
@@ -114,13 +118,13 @@ let weather = {
        ).innerHTML = `<span>Atmospheric Pressure:</span> ${pressure} hPa`;
        document.querySelector(
        ".feels_like"
-      ).innerHTML = `<span>Feels Like:</span> ${feels_like} &degC`;
+      ).innerHTML = `<span>Feels Like:</span> ${feels_like} &degC `;
       document.querySelector(
         ".speed"
       ).innerHTML = `<span>Speed:</span> ${speed} m/s`;
       document.querySelector(
         ".temp"
-      ).innerHTML = `<span>Temperature:</span> ${temp} &degC`;
+      ).innerHTML = `<span>Temperature:</span> ${temp} &degC  ${convert(temp).toFixed(2)} &degF`;
        
     
     const weatherImage = document.querySelector(".weatherImage");
@@ -325,7 +329,7 @@ let weather = {
     const h3 = document.createElement("h3");
     const p = document.createElement("p");
     h3.textContent = `${dayOfWeek}:`;
-    p.innerHTML = `Max Temp:${maxTemp}&degC/Min Temp:${minTemp}&degC`;
+    p.innerHTML = `Max Temp:${maxTemp}&degC ${convert(maxTemp).toFixed(2)}&degF /Min Temp:${minTemp}&degC ${convert(minTemp).toFixed(2)}&degF`;
     const img = document.createElement("img");
   
     const Icon = icon.slice(0, -1);
